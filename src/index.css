@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom industrial colors */
+    --blue: 210 100% 50%;
+    --blue-dark: 210 100% 40%;
+    --dark-navy: 220 30% 8%;
+    --dark-navy-light: 220 25% 12%;
+    --steel: 220 10% 25%;
+    --steel-light: 220 10% 35%;
+    --smoke: 220 10% 70%;
+
+    /* Gradients */
+    --gradient-blue: linear-gradient(135deg, hsl(210 100% 50%), hsl(220 100% 45%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 30% 8%), hsl(220 25% 4%));
+    --gradient-overlay: linear-gradient(180deg, hsla(220, 30%, 8%, 0.7), hsla(220, 30%, 8%, 0.9));
+
+    /* Shadows */
+    --shadow-blue: 0 4px 30px hsla(210, 100%, 50%, 0.3);
+    --shadow-dark: 0 10px 40px hsla(0, 0%, 0%, 0.5);
+
+    /* Font families */
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+  }
+
+  .dark {
+    --background: 220 20% 6%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-heading font-bold uppercase tracking-wider;
+  }
+
+  .section-subtitle {
+    @apply text-sm md:text-base uppercase tracking-[0.3em] text-muted-foreground;
+  }
+
+  .gold-text {
+    @apply text-primary;
+  }
+
+  .gold-underline {
+    @apply relative inline-block;
+  }
+
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary;
+  }
+
+  .card-industrial {
+    @apply bg-card border border-border/50 backdrop-blur-sm;
+  }
+
+  .btn-blue {
+    @apply bg-primary text-primary-foreground font-heading uppercase tracking-wider px-8 py-3 
+           transition-all duration-300 hover:shadow-[0_4px_30px_hsla(210,100%,50%,0.4)]
+           hover:translate-y-[-2px];
+  }
+
+  .btn-outline-blue {
+    @apply border-2 border-primary text-primary font-heading uppercase tracking-wider px-8 py-3
+           transition-all duration-300 hover:bg-primary hover:text-primary-foreground;
+  }
+
+  .feature-card {
+    @apply bg-primary text-primary-foreground p-6 transition-all duration-300
+           hover:shadow-[0_4px_30px_hsla(210,100%,50%,0.4)] hover:translate-y-[-4px];
+  }
+
+  .service-card {
+    @apply relative overflow-hidden group cursor-pointer;
+  }
+
+  .service-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent
+           opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .gallery-card {
+    @apply relative overflow-hidden;
+  }
+
+  .gallery-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent;
+  }
+
+  /* Background watermark text */
+  .watermark-text {
+    @apply absolute text-[8rem] md:text-[12rem] lg:text-[16rem] font-heading font-bold uppercase 
+           text-foreground/[0.03] leading-none tracking-tighter pointer-events-none select-none
+           whitespace-nowrap;
+  }
+
+  /* Parallax container */
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .text-shadow-blue {
+    text-shadow: 0 0 30px hsla(210, 100%, 50%, 0.5);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-spark {
+    animation: spark 2s ease-in-out infinite;
+  }
+
+  @keyframes spark {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px hsla(210, 100%, 50%, 0.3); }
+    50% { box-shadow: 0 0 40px hsla(210, 100%, 50%, 0.6); }
+  }
+}
